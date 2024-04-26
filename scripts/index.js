@@ -41,19 +41,14 @@ forwardButtons.forEach((button) =>
     removeCheckboxMessages();
 
     const id = activeFieldset[0].id;
+
     if (id === "step1") {
       if (!form.checkValidity()) {
         setErrorStateStep1(activeFieldset);
         return;
       }
-      step1.classList.toggle("not-displayed");
-      step2.classList.toggle("not-displayed");
-      progressIndication[0].classList.toggle(
-        "registration-progress__indicator--active",
-      );
-      progressIndication[1].classList.toggle(
-        "registration-progress__indicator--active",
-      );
+      changeDisplayedStep(step1, step2);
+      changeProgressActiveIndicator(0, 1);
       progressIndication[0].classList.add(
         "registration-progress__indicator--done",
       );
@@ -65,14 +60,8 @@ forwardButtons.forEach((button) =>
         setErrorStateStep2(activeFieldset);
         return;
       }
-      step2.classList.toggle("not-displayed");
-      step3.classList.toggle("not-displayed");
-      progressIndication[1].classList.toggle(
-        "registration-progress__indicator--active",
-      );
-      progressIndication[2].classList.toggle(
-        "registration-progress__indicator--active",
-      );
+      changeDisplayedStep(step2, step3);
+      changeProgressActiveIndicator(1, 2);
       progressIndication[1].classList.add(
         "registration-progress__indicator--done",
       );
@@ -82,9 +71,7 @@ forwardButtons.forEach((button) =>
       displayTopic(topic3, listTopic3);
       currentPage.innerText = 3;
     } else if (id === "step3") {
-      progressIndication[2].classList.toggle(
-        "registration-progress__indicator--active",
-      );
+      changeProgressActiveIndicator(2);
       progressIndication[2].classList.add(
         "registration-progress__indicator--done",
       );
@@ -100,25 +87,13 @@ backButtons.forEach((button) =>
   button.addEventListener("click", (e) => {
     const id = document.querySelector("fieldset:not(.not-displayed)").id;
     if (id === "step2") {
-      step1.classList.toggle("not-displayed");
-      step2.classList.toggle("not-displayed");
-      progressIndication[0].classList.toggle(
-        "registration-progress__indicator--active",
-      );
-      progressIndication[1].classList.toggle(
-        "registration-progress__indicator--active",
-      );
+      changeDisplayedStep(step2, step1);
+      changeProgressActiveIndicator(1, 0);
       removeCheckboxMessages();
       currentPage.innerText = 1;
     } else if (id === "step3") {
-      step2.classList.toggle("not-displayed");
-      step3.classList.toggle("not-displayed");
-      progressIndication[1].classList.toggle(
-        "registration-progress__indicator--active",
-      );
-      progressIndication[2].classList.toggle(
-        "registration-progress__indicator--active",
-      );
+      changeDisplayedStep(step3, step2);
+      changeProgressActiveIndicator(2, 1);
       currentPage.innerText = 2;
     }
   }),
@@ -167,4 +142,21 @@ function displayTopic(topic, listTopic) {
   } else {
     listTopic.classList.remove("not-displayed");
   }
+}
+
+function changeDisplayedStep(stepFrom, stepTo) {
+  stepFrom.classList.toggle("not-displayed");
+  stepTo.classList.toggle("not-displayed");
+}
+
+function changeProgressActiveIndicator(fr, to) {
+  progressIndication[fr].classList.toggle(
+    "registration-progress__indicator--active",
+  );
+
+  if (to === undefined) return;
+
+  progressIndication[to].classList.toggle(
+    "registration-progress__indicator--active",
+  );
 }

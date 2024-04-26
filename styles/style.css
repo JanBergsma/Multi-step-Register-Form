@@ -144,6 +144,7 @@ main {
 
 .registration-form__summary-group {
   display: flex;
+  gap: 0.4rem;
 }
 
 .registration-form__summary-group--topics {
