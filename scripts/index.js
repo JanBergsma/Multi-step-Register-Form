@@ -18,6 +18,8 @@ const step1 = document.getElementById("step1");
 const step2 = document.getElementById("step2");
 const step3 = document.getElementById("step3");
 
+const currentPage = document.getElementById("current-page");
+
 const progressIndication = [
   ...document.querySelectorAll(
     ".registration-progress__indication > .registration-progress__indicator",
@@ -57,6 +59,7 @@ forwardButtons.forEach((button) =>
       );
       summaryName.textContent = name.value;
       summaryEmail.textContent = email.value;
+      currentPage.innerText = 2;
     } else if (id === "step2") {
       if (atLeastOneCheckBoxSelected(activeFieldset)) {
         setErrorStateStep2(activeFieldset);
@@ -77,6 +80,7 @@ forwardButtons.forEach((button) =>
       displayTopic(topic1, listTopic1);
       displayTopic(topic2, listTopic2);
       displayTopic(topic3, listTopic3);
+      currentPage.innerText = 3;
     } else if (id === "step3") {
       progressIndication[2].classList.toggle(
         "registration-progress__indicator--active",
@@ -105,6 +109,7 @@ backButtons.forEach((button) =>
         "registration-progress__indicator--active",
       );
       removeCheckboxMessages();
+      currentPage.innerText = 1;
     } else if (id === "step3") {
       step2.classList.toggle("not-displayed");
       step3.classList.toggle("not-displayed");
@@ -114,6 +119,7 @@ backButtons.forEach((button) =>
       progressIndication[2].classList.toggle(
         "registration-progress__indicator--active",
       );
+      currentPage.innerText = 2;
     }
   }),
 );
