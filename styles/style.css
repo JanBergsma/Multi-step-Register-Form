@@ -5,6 +5,7 @@
   --bg-form: #212936;
   --bg-button-gradient-from-color: #652cd1;
   --bg-button-gradient-to-color: #845eee;
+  --bg-button-disabled: #4d5562;
   --bg-progress-indicator: #4d5562;
   --bg-progress-indicator-active: #652cd1;
   --primary-color: #e5e7eb;
@@ -187,6 +188,11 @@ main {
 
 .registration-form__button:active {
   transform: translateY(1px);
+}
+
+.registration-form__button:disabled {
+  transform: none;
+  background: var(--bg-button-disabled);
 }
 
 .registration-progress {

@@ -36,21 +36,12 @@ forwardButtons.forEach((button) =>
     const activeFieldset = [
       ...form.querySelectorAll("fieldset:not(.not-displayed)"),
     ];
-    // debugger;
     removeCheckboxMessages();
 
     const id = activeFieldset[0].id;
     if (id === "step1") {
       if (!form.checkValidity()) {
-        activeFieldset
-          .flatMap((e) => [...e.querySelectorAll("input")])
-          .forEach((e) =>
-            e.classList.add("registration-form__field--show-invalid"),
-          );
-
-        progressIndication[0].classList.remove(
-          "registration-progress__indicator--done",
-        );
+        setErrorStateStep1(activeFieldset);
         return;
       }
       step1.classList.toggle("not-displayed");
@@ -67,21 +58,10 @@ forwardButtons.forEach((button) =>
       summaryName.textContent = name.value;
       summaryEmail.textContent = email.value;
     } else if (id === "step2") {
-      if (
-        activeFieldset[0].querySelectorAll("input[type=checkbox]:checked")
-          .length === 0
-      ) {
-        [...activeFieldset[0].querySelectorAll("input[type=checkbox]")]
-          .map((e) => {
-            e.setCustomValidity("Select one");
-            return e;
-          })
-          .forEach((e) =>
-            e.classList.add("registration-form__field--show-invalid"),
-          );
+      if (atLeastOneCheckBoxSelected(activeFieldset)) {
+        setErrorStateStep2(activeFieldset);
         return;
       }
-
       step2.classList.toggle("not-displayed");
       step3.classList.toggle("not-displayed");
       progressIndication[1].classList.toggle(
@@ -94,27 +74,18 @@ forwardButtons.forEach((button) =>
         "registration-progress__indicator--done",
       );
 
-      if (!topic1.checked) {
-        listTopic1.classList.add("not-displayed");
-      } else {
-        listTopic1.classList.remove("not-displayed");
-      }
-      if (!topic2.checked) {
-        listTopic2.classList.add("not-displayed");
-      } else {
-        listTopic2.classList.remove("not-displayed");
-      }
-      if (!topic3.checked) {
-        listTopic3.classList.add("not-displayed");
-      } else {
-        listTopic3.classList.remove("not-displayed");
-      }
+      displayTopic(topic1, listTopic1);
+      displayTopic(topic2, listTopic2);
+      displayTopic(topic3, listTopic3);
     } else if (id === "step3") {
       progressIndication[2].classList.toggle(
         "registration-progress__indicator--active",
       );
       progressIndication[2].classList.add(
         "registration-progress__indicator--done",
+      );
+      [...step3.getElementsByTagName("button")].forEach(
+        (b) => (b.disabled = true),
       );
       alert("✅ Success");
     }
@@ -147,6 +118,32 @@ backButtons.forEach((button) =>
   }),
 );
 
+function setErrorStateStep1(activeFieldset) {
+  activeFieldset
+    .flatMap((e) => [...e.querySelectorAll("input")])
+    .forEach((e) => e.classList.add("registration-form__field--show-invalid"));
+
+  progressIndication[0].classList.remove(
+    "registration-progress__indicator--done",
+  );
+}
+
+function setErrorStateStep2(activeFieldset) {
+  [...activeFieldset[0].querySelectorAll("input[type=checkbox]")]
+    .map((e) => {
+      e.setCustomValidity("Select at least one topic.");
+      return e;
+    })
+    .forEach((e) => e.classList.add("registration-form__field--show-invalid"));
+}
+
+function atLeastOneCheckBoxSelected(activeFieldset) {
+  return (
+    activeFieldset[0].querySelectorAll("input[type=checkbox]:checked")
+      .length === 0
+  );
+}
+
 function removeCheckboxMessages() {
   [...step2.querySelectorAll("input[type=checkbox]")]
     .map((e) => {
@@ -156,4 +153,12 @@ function removeCheckboxMessages() {
     .forEach((e) =>
       e.classList.remove("registration-form__field--show-invalid"),
     );
+}
+
+function displayTopic(topic, listTopic) {
+  if (!topic.checked) {
+    listTopic.classList.add("not-displayed");
+  } else {
+    listTopic.classList.remove("not-displayed");
+  }
 }
