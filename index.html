@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="img/Cute-Cat-icon.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <title>Multi-step Register Form</title>
+  </head>
+  <body>
+    <main>
+      <form
+        id="registration-form"
+        method="POST"
+        class="registration-form"
+        action="javascript:void(0);"
+      >
+        <fieldset class="registration-form__fieldset" id="step1">
+          <h2 class="registration-form__header">Register</h2>
+
+          <div class="registration-form__input-group">
+            <label class="registration-form__label" for="name">Name</label>
+            <input
+              class="registration-form__field"
+              type="text"
+              name="name"
+              id="name"
+              placeholder="enter your name"
+              required
+            />
+          </div>
+          <div class="registration-form__input-group">
+            <label class="registration-form__label" for="email">Email</label>
+            <input
+              class="registration-form__field"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="example@gmail.com"
+              required
+            />
+          </div>
+          <div class="registration-form__buttons">
+            <button
+              class="registration-form__button registration-form__button--submit"
+            >
+              Continue
+            </button>
+          </div>
+        </fieldset>
+        <fieldset class="registration-form__fieldset not-displayed" id="step2">
+          <h2 class="registration-form__header">
+            Which topics you are interested in?
+          </h2>
+          <div class="registration-form__input-group">
+            <input
+              class="registration-form__checkbox"
+              type="checkbox"
+              name="topic-1"
+              id="topic-1"
+            />
+            <label
+              class="registration-form__label registration-form__field registration-form__checkbox-label"
+              for="topic-1"
+              >Software Development</label
+            >
+          </div>
+          <div class="registration-form__input-group">
+            <input
+              class="registration-form__checkbox"
+              type="checkbox"
+              name="topic-2"
+              id="topic-2"
+            />
+            <label
+              class="registration-form__label registration-form__field registration-form__checkbox-label"
+              for="topic-2"
+              >User Experience</label
+            >
+          </div>
+          <div class="registration-form__input-group">
+            <input
+              class="registration-form__checkbox"
+              type="checkbox"
+              name="topic-3"
+              id="topic-3"
+            />
+            <label
+              class="registration-form__label registration-form__field registration-form__checkbox-label"
+              for="topic-3"
+              >Graphic Design</label
+            >
+          </div>
+          <div class="registration-form__buttons">
+            <button
+              class="registration-form__button registration-form__button--back"
+            >
+              Back
+            </button>
+            <button
+              class="registration-form__button registration-form__button--submit"
+            >
+              Continue
+            </button>
+          </div>
+        </fieldset>
+        <fieldset class="registration-form__fieldset not-displayed" id="step3">
+          <h2 class="registration-form__header">Summary</h2>
+          <div class="registration-form__summary">
+            <div class="registration-form__summary-group">
+              <p class="registration-form-summary__label">Name:</p>
+              <p id="summary-name" class="registration-form-summary__field">
+                Emily Johnson
+              </p>
+            </div>
+            <div class="registration-form__summary-group">
+              <p class="registration-form-summary__label">Email:</p>
+              <p id="summary-email" class="registration-form-summary__field">
+                Emily@EmilyJohnson.com
+              </p>
+            </div>
+          </div>
+          <div
+            class="registration-form__summary-group registration-form__summary-group--topics"
+          >
+            <p class="registration-form-summary__label">Topics:</p>
+            <ul id="summary-topics" class="registration-form-summary__list">
+              <li id="list-topic-1" class="registration-form-summary__topic">
+                Software Development
+              </li>
+              <li id="list-topic-2" class="registration-form-summary__topic">
+                User Experience
+              </li>
+              <li id="list-topic-3" class="registration-form-summary__topic">
+                Graphic Design
+              </li>
+            </ul>
+          </div>
+          <div class="registration-form__buttons">
+            <button
+              class="registration-form__button registration-form__button--back"
+            >
+              Back
+            </button>
+            <button
+              class="registration-form__button registration-form__button--submit"
+            >
+              Confirm
+            </button>
+          </div>
+        </fieldset>
+      </form>
+      <div class="registration-progress">
+        <div class="registration-progress__text">Step 1 of 3</div>
+        <div class="registration-progress__indication">
+          <div
+            id="step1-done"
+            class="registration-progress__indicator registration-progress__indicator--done registration-progress__indicator--active"
+          ></div>
+          <div id="step2-done" class="registration-progress__indicator"></div>
+          <div id="step3-done" class="registration-progress__indicator"></div>
+        </div>
+      </div>
+    </main>
+    <script src="scripts/index.js"></script>
+  </body>
+</html>

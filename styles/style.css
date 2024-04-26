@@ -1,0 +1,223 @@
+:root {
+  /* Color */
+  --bg-gradient-inside-color: #121826;
+  --bg-gradient-outside-color: #662cd1;
+  --bg-form: #212936;
+  --bg-button-gradient-from-color: #652cd1;
+  --bg-button-gradient-to-color: #845eee;
+  --bg-progress-indicator: #4d5562;
+  --bg-progress-indicator-active: #652cd1;
+  --primary-color: #e5e7eb;
+  --secondary-color: #a1a1a9;
+  --input-field-border-color: #4d5562;
+  --input-field-color: #a1a1a9;
+  --input-field-focus-bg-color: #394150;
+  --input-field-focus-color: #a1a1a9;
+  --input-field-hover-bg-color: #652cd1;
+  --input-field-hover-color: #e5e7eb;
+
+  /* Font Size */
+  --font-size-heading: 1.25rem;
+  --font-size-tab: 0.875rem;
+  --font-size-body: 1rem;
+  --font-size-label: 0.75rem;
+
+  /* Form dimensions */
+  --form-height: 420px;
+  --form-width: 445px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(
+    135deg,
+    var(--bg-gradient-outside-color),
+    5%,
+    var(--bg-gradient-inside-color),
+    95%,
+    var(--bg-gradient-outside-color)
+  );
+  color: var(--primary-color);
+  font-family: Inter, sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "slnt" 0;
+}
+
+main {
+  display: grid;
+  place-content: center;
+  height: 100%;
+}
+
+.registration-form {
+  border-radius: 15px;
+  background: var(--bg-form);
+  padding-inline: 3rem;
+  padding-block: 3rem;
+  width: var(--form-width);
+  height: var(--form-height);
+}
+
+.registration-form__fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.not-displayed {
+  display: none;
+}
+
+.registration-form__header {
+  font-size: var(--font-size-heading);
+}
+
+.registration-form__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.registration-form__label {
+  color: var(--secondary-color);
+  font-size: var(--font-size-label);
+}
+
+.registration-form__field {
+  outline: 1px solid var(--input-field-border-color);
+  border: none;
+  border-radius: 15px;
+  background-color: var(--bg-form);
+  padding-inline: 1rem;
+  height: 3rem;
+  color: var(--input-field-color);
+}
+
+.registration-form__checkbox {
+  opacity: 0;
+}
+
+.registration-form__checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.registration-form__checkbox-label:active {
+  transform: translateY(1px);
+}
+
+.registration-form__checkbox-label:hover {
+  cursor: pointer;
+}
+
+.registration-form__checkbox:checked + .registration-form__checkbox-label {
+  background-color: var(--input-field-focus-bg-color);
+  color: var(--input-field-focus-color);
+}
+
+.registration-form__field:hover {
+  background-color: var(--input-field-hover-bg-color);
+  color: var(--input-field-hover-color);
+}
+
+.registration-form__field:focus {
+  background-color: var(--input-field-focus-bg-color);
+  color: var(--input-field-focus-color);
+}
+
+.registration-form__field--show-invalid:invalid {
+  border: 2px dashed red;
+}
+
+.registration-form__summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.registration-form__summary-group {
+  display: flex;
+}
+
+.registration-form__summary-group--topics {
+  flex-direction: column;
+}
+
+.registration-form-summary__label {
+  color: var(--secondary-color);
+}
+
+.registration-form-summary__list {
+  margin-inline-start: 0.6rem;
+  list-style-position: inside;
+}
+
+.registration-form__buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.registration-form__button {
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(
+    var(--bg-button-gradient-to-color),
+    var(--bg-button-gradient-from-color)
+  );
+  padding-block: 0.5rem;
+  width: 120px;
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: var(--font-size-label);
+}
+
+.registration-form__button:hover {
+  background: linear-gradient(
+    var(--bg-button-gradient-from-color),
+    var(--bg-button-gradient-to-color)
+  );
+}
+
+.registration-form__button:active {
+  transform: translateY(1px);
+}
+
+.registration-progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+}
+
+.registration-progress__text {
+  color: var(--secondary-color);
+  font-size: var(--font-size-tab);
+}
+
+.registration-progress__indication {
+  display: flex;
+  gap: 1rem;
+  padding-inline-start: 1rem;
+}
+
+.registration-progress__indicator {
+  border-radius: 50%;
+  background: var(--bg-progress-indicator);
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+.registration-progress__indicator--done {
+  background: var(--bg-progress-indicator-active);
+}
+
+.registration-progress__indicator--active {
+  box-shadow: 0 0 5px 5px var(--bg-progress-indicator);
+}
