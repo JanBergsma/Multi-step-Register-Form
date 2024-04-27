@@ -164,6 +164,7 @@ main {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  padding-block-start: 2rem;
 }
 
 .registration-form__button {
